@@ -19,7 +19,13 @@ const parseString = (string, x) => {
       }
       demoArray.push(splitWords[i + j]);
     }
-    sortedWords.push(demoArray);
+    let result = "";
+    if (demoArray.length > 1) {
+      result = demoArray.join(" ");
+    } else {
+      result = demoArray;
+    }
+    sortedWords.push(result);
   }
   for (let i = 0; i < sortedWords.length; i += 2) {
     if (sortedWords[i] === undefined) {
@@ -70,6 +76,8 @@ const toWordDoc = (words) => {
       children: [
         new TextRun({
           text: words[line][0] + "\t" + words[line][1],
+          font: "Calibri",
+          size: 28,
         }),
       ],
       tabStops: [
@@ -98,4 +106,4 @@ const toWordDoc = (words) => {
 };
 
 // console.log(toText("the quick brown fox jumps over the lazy dog", 2));
-toWordDoc(parseString("the quick brown fox jumps over the lazy dog", 2));
+toWordDoc(parseString(setText, 4));
