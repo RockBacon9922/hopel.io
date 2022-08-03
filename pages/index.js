@@ -1,24 +1,33 @@
 import { parseString } from "../javaScripts/parseString";
+import { createRef } from "react";
+import * as cookie from "cookie";
+export async function getServerSideProps(context) {
+  const cookies = context.req.headers.cookie;
+  const parsedCookies = cookie.parse(cookies);
+  const name = parsedCookies.name;
+  console.log(name);
+  return {
+    props: { name }, // will be passed to the page component as props
+  };
+}
 
 const Home = () => {
-	return (
-		<div className="w-screen h-screen">
-			<Game />
-		</div>
-	);
+  const textAreaRef = createRef();
+  return (
+    <div className="w-screen h-screen max-h-screen flex flex-col">
+      <div className="h-16 w-max" />
+      <div className="w-full h-full flex items-center justify-center">
+        <div className="h-2/3 max-h-max w-2/3 p-4 bg-gray-400 flex flex-col justify-around">
+          <textarea
+            className="w-full h-2/3"
+            ref={textAreaRef}
+            defaultValue="stoneham"
+          />
+          <button className="bg-red-300 h-1/5">hoplify</button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Home;
-
-const Game = (props) => {
-	const mainText = parseString(
-		"the quick brown fox jumps over the lazy dog",
-		2
-	);
-	console.log(mainText);
-	return (
-		<div className="w-full h-full flex flex-col">
-			<div className="h-full w-full bg-slate-500 p-4">{}</div>
-		</div>
-	);
-};
