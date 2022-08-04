@@ -106,4 +106,6 @@ const toWordDoc = (words) => {
 };
 
 // console.log(toText("the quick brown fox jumps over the lazy dog", 2));
+
+let setText = "the quick brown fox jumps over the lazy dog";
 toWordDoc(parseString(setText, 4));
