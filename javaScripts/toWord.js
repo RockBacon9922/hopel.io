@@ -34,46 +34,19 @@ const parseString = (string, x) => {
 const WORDSPERCOLUMN = 2;
 const COLUMNS = 2;
 toWordDoc = (words, columns = 2) => {
-    const rows = [];
-    for (let i = 0; i < words.length; i += columns) {
-      let row = [];
+  for (paragraph of words) {
+    console.log(paragraph);
+    let row = new TableRow();
+    for (let i = 0; i < paragraph.length; i += columns) {
       for (let j = 0; j < columns; j++) {
-        if (words[i + j] === undefined) {
-          words[i + j] = "";
+        if (i + j < paragraph.length) {
+          row.addCell(new TableCell(new Paragraph(paragraph[i + j])));
         }
-        row.push(words[i + j]);
       }
-      rows.push(row);
-      // rows.push(
-      //   new TableRow({
-      //     children: row.map((word) => {
-      //       return new TableCell({
-      //         children: [new Paragraph(word)],
-      //       });
-      //     }),
-      //   })
-      // );
     }
-    console.log(rows);
-    return rows;
-    // const theTable = new Table({
-    //   rows: rows,
-    // });
-    // const doc = new Document({
-    //   sections: [
-    //     {
-    //       children: theTable,
-    //     },
-    //   ],
-    // });
-
-    // // Used to export the file into a .docx file
-    // Packer.toBuffer(doc).then((buffer) => {
-    //   fs.writeFileSync("My Document.docx", buffer);
-    // });
+    console.log("\n");
   }
 };
-
 toWordDoc(
   parseString("Hello\nWorld i am very pleased to meet you", WORDSPERCOLUMN),
   COLUMNS
