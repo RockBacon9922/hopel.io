@@ -44,6 +44,10 @@ toWordDoc = (words, columns = 2) => {
       for (let j = 0; j < columns && paragraph[i + j] != undefined; j++) {
         // console.log(typeof paragraph[i + j][0]);
         console.log(paragraph[i + j] + " " + i + " " + j);
+        if (paragraph[i + j][1] == undefined) {
+          paragraph[i + j][1] = "";
+        }
+        let theText = paragraph[i + j][0] + " " + paragraph[i + j][1];
         let g = new TableCell({
           width: {
             size: 4505,
