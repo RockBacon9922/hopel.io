@@ -6,7 +6,9 @@ const {
   TextRun,
   TableRow,
   TableCell,
+  WidthType,
 } = require("docx");
+const fs = require("fs");
 
 const parseString = (string, x) => {
   let finalArray = [];
@@ -31,22 +33,47 @@ const parseString = (string, x) => {
   }
   return finalArray;
 };
-const WORDSPERCOLUMN = 2;
-const COLUMNS = 2;
+
 toWordDoc = (words, columns = 2) => {
+  let tableRows = [];
   for (paragraph of words) {
     console.log(paragraph);
-    let row = new TableRow();
     for (let i = 0; i < paragraph.length; i += columns) {
-      for (let j = 0; j < columns; j++) {
-        if (i + j < paragraph.length) {
-          row.addCell(new TableCell(new Paragraph(paragraph[i + j])));
-        }
+      let row = [];
+      for (let j = 0; j < columns && paragraph[i + j] != undefined; j++) {
+        // console.log(typeof paragraph[i + j][0]);
+        console.log(paragraph[i + j] + " " + i + " " + j);
+        let g = new TableCell({
+          width: {
+            size: 4505,
+            type: WidthType.DXA,
+          },
+          children: [
+            new Paragraph(paragraph[i + j][0] + " " + paragraph[i + j][1]),
+          ],
+        });
+        row.push(g);
       }
+      tableRows.push(new TableRow({ children: row }));
     }
-    console.log("\n");
   }
+
+  const doc = new Document({
+    title: "hopel",
+    sections: [
+      {
+        children: [new Table({ columnWidths: [4505, 4505], rows: tableRows })],
+      },
+    ],
+  });
+
+  Packer.toBuffer(doc).then((buffer) => {
+    fs.writeFileSync("mydoc.docx", buffer);
+  });
 };
+
+const WORDSPERCOLUMN = 2;
+const COLUMNS = 2;
 toWordDoc(
   parseString("Hello\nWorld i am very pleased to meet you", WORDSPERCOLUMN),
   COLUMNS
