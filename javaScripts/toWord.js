@@ -86,6 +86,42 @@ toWordDoc = (words, columns = 2) => {
       }
       tableRows.push(new TableRow({ children: row, cantSplit: true }));
     }
+    // TODO: make feature below togglable
+    tableRows.push(
+      new TableRow({
+        children: [
+          new TableCell({
+            borders: {
+              top: {
+                style: BorderStyle.NONE,
+                size: 0,
+                color: "ff0000",
+              },
+              bottom: {
+                style: BorderStyle.NONE,
+                size: 0,
+                color: "ff0000",
+              },
+              left: {
+                style: BorderStyle.NONE,
+                size: 0,
+                color: "ff0000",
+              },
+              right: {
+                style: BorderStyle.NONE,
+                size: 0,
+                color: "ff0000",
+              },
+            },
+            width: {
+              size: 4505,
+              type: WidthType.DXA,
+            },
+            children: [new Paragraph("")],
+          }),
+        ],
+      })
+    );
   }
 
   const doc = new Document({
