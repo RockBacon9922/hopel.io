@@ -84,7 +84,7 @@ toWordDoc = (words, columns = 2) => {
         });
         row.push(g);
       }
-      tableRows.push(new TableRow({ children: row }));
+      tableRows.push(new TableRow({ children: row, cantSplit: true }));
     }
   }
 
