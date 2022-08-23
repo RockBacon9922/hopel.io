@@ -49,6 +49,28 @@ toWordDoc = (words, columns = 2) => {
         }
         let theText = paragraph[i + j][0] + " " + paragraph[i + j][1];
         let g = new TableCell({
+          borders: {
+            top: {
+              style: BorderStyle.NONE,
+              size: 0,
+              color: "ff0000",
+            },
+            bottom: {
+              style: BorderStyle.NONE,
+              size: 0,
+              color: "ff0000",
+            },
+            left: {
+              style: BorderStyle.NONE,
+              size: 0,
+              color: "ff0000",
+            },
+            right: {
+              style: BorderStyle.NONE,
+              size: 0,
+              color: "ff0000",
+            },
+          },
           width: {
             size: 4505,
             type: WidthType.DXA,
