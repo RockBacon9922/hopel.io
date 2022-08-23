@@ -76,7 +76,10 @@ toWordDoc = (words, columns = 2) => {
             type: WidthType.DXA,
           },
           children: [
-            new Paragraph(paragraph[i + j][0] + " " + paragraph[i + j][1]),
+            new Paragraph({
+              text: theText,
+              alignment: AlignmentType.CENTER,
+            }),
           ],
         });
         row.push(g);
