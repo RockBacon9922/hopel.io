@@ -105,6 +105,9 @@ toWordDoc = (words, columns = 2) => {
 const WORDSPERCOLUMN = 2;
 const COLUMNS = 2;
 toWordDoc(
-  parseString("Hello\nWorld i am very pleased to meet you", WORDSPERCOLUMN),
+  parseString(
+    "Hello\nWorld i am very pleased to meet you i love squidgywoo",
+    WORDSPERCOLUMN
+  ),
   COLUMNS
 );
