@@ -3,10 +3,11 @@ const {
   Document,
   Packer,
   Paragraph,
-  TextRun,
   TableRow,
   TableCell,
   WidthType,
+  AlignmentType,
+  BorderStyle,
 } = require("docx");
 const fs = require("fs");
 
