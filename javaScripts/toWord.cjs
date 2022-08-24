@@ -1,13 +1,15 @@
-import {
+const {
   Table,
   Document,
+  Packer,
   Paragraph,
   TableRow,
   TableCell,
   WidthType,
   AlignmentType,
   BorderStyle,
-} from "docx";
+} = require("docx");
+const fs = require("fs");
 
 const parseString = (string, x) => {
   let finalArray = [];
@@ -19,7 +21,7 @@ const parseString = (string, x) => {
 
   for (let i = 0; i < separatedWordsAndParagraphs.length; i++) {
     if (separatedWordsAndParagraphs[i].length > 1) {
-      let separatedWordsWithinParagraphs = [];
+      separatedWordsWithinParagraphs = [];
       for (let j = 0; j < separatedWordsAndParagraphs[i].length; j += x) {
         separatedWordsWithinParagraphs.push(
           separatedWordsAndParagraphs[i].slice(j, j + x)
@@ -35,7 +37,7 @@ const parseString = (string, x) => {
 
 const toWordDoc = (words, columns = 2) => {
   let tableRows = [];
-  for (let paragraph of words) {
+  for (paragraph of words) {
     console.log(paragraph);
     for (let i = 0; i < paragraph.length; i += columns) {
       let row = [];
@@ -130,9 +132,18 @@ const toWordDoc = (words, columns = 2) => {
       },
     ],
   });
-  return doc;
+
+  Packer.toBuffer(doc).then((buffer) => {
+    fs.writeFileSync("mydoc.docx", buffer);
+  });
 };
 
-export function wordDoc(words, wordsPerColumn = 2, columns = 2) {
-  return toWordDoc(parseString(words, wordsPerColumn), columns);
-}
+const WORDSPERCOLUMN = 2;
+const COLUMNS = 2;
+toWordDoc(
+  parseString(
+    "Hello\nWorld i am very pleased to meet you i love squidgywoo",
+    WORDSPERCOLUMN
+  ),
+  COLUMNS
+);
