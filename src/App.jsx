@@ -1,16 +1,18 @@
 import { wordDoc } from './javaScripts/toWord';
-import { save } from '@tauri-apps/api/dialog';s
+import { save } from '@tauri-apps/api/dialog';
 import { writeTextFile, BaseDirectory } from '@tauri-apps/api/fs';
 
 const App = () => {
-  const saveFile = () => {
+  const saveFile = async () => {
     const filePath = await save({
-      multiple: false,
+      multiple: true,
+      title: 'Save File',
       filters: [{
-        name: 'Image',
-        extensions: ['stronghold']
+        name: 'Untitled',
+        extensions: ['docx']
       }]
     });
+
   }
   return (
     <div className="min-h-screen min-w-screen flex justify-center text-center ">
@@ -23,7 +25,7 @@ const App = () => {
           <h1>Number of words per column:</h1>
           <input type="number" defaultValue={2}/>
         </div>
-        <button>Create your Hopel</button>
+        <button onClick={saveFile}>Create your Hopel</button>
       </div>
     </div>
   );
