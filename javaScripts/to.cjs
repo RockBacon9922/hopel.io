@@ -1,13 +1,15 @@
-import {
+const {
   Table,
   Document,
+  Packer,
   Paragraph,
   TableRow,
   TableCell,
   WidthType,
   AlignmentType,
   BorderStyle,
-} from "docx";
+} = require("docx");
+const fs = require("fs");
 
 const parseString = (string, x) => {
   let finalArray = [];
@@ -88,6 +90,42 @@ const toWordDoc = (words, columns = 2) => {
       }
       tableRows.push(new TableRow({ children: row, cantSplit: true }));
     }
+    // TODO: make feature below togglable
+    // tableRows.push(
+    //   new TableRow({
+    //     children: [
+    //       new TableCell({
+    //         borders: {
+    //           top: {
+    //             style: BorderStyle.NONE,
+    //             size: 0,
+    //             color: "ff0000",
+    //           },
+    //           bottom: {
+    //             style: BorderStyle.NONE,
+    //             size: 0,
+    //             color: "ff0000",
+    //           },
+    //           left: {
+    //             style: BorderStyle.NONE,
+    //             size: 0,
+    //             color: "ff0000",
+    //           },
+    //           right: {
+    //             style: BorderStyle.NONE,
+    //             size: 0,
+    //             color: "ff0000",
+    //           },
+    //         },
+    //         width: {
+    //           size: 4505,
+    //           type: WidthType.DXA,
+    //         },
+    //         children: [new Paragraph("")],
+    //       }),
+    //     ],
+    //   })
+    // );
   }
 
   const doc = new Document({
@@ -98,9 +136,21 @@ const toWordDoc = (words, columns = 2) => {
       },
     ],
   });
-  return doc;
+  // Packer.toBuffer(doc).then((buffer) => {
+  //   fs.writeFileSync("mydoc.docx", buffer);
+  // });
 };
 
 export function wordDoc(words, wordsPerColumn = 2, columns = 2) {
   return toWordDoc(parseString(words, wordsPerColumn), columns);
 }
+
+// const WORDSPERCOLUMN = 4;
+// const COLUMNS = 2;
+// toWordDoc(
+//   parseString(
+//     "Hello\nWorld i am very pleased to meet you i love squidgywoo",
+//     WORDSPERCOLUMN
+//   ),
+//   COLUMNS
+// );
