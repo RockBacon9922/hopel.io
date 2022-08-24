@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "hopelio",
-    "version": "0.0.0"
+    "version": "1.0.0"
   },
   "tauri": {
     "allowlist": {
@@ -15,8 +15,8 @@
     },
     "bundle": {
       "active": true,
-      "category": "DeveloperTool",
-      "copyright": "",
+      "category": "Educational",
+      "copyright": "William Stoneham",
       "deb": {
         "depends": []
       },
@@ -28,7 +28,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "com.williamstoneham.hopelio",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
