@@ -1,5 +1,17 @@
+import { wordDoc } from './javaScripts/toWord';
+import { save } from '@tauri-apps/api/dialog';s
+import { writeTextFile, BaseDirectory } from '@tauri-apps/api/fs';
 
 const App = () => {
+  const saveFile = () => {
+    const filePath = await save({
+      multiple: false,
+      filters: [{
+        name: 'Image',
+        extensions: ['stronghold']
+      }]
+    });
+  }
   return (
     <div className="min-h-screen min-w-screen flex justify-center text-center ">
       <div className="flex justify-center flex-col gap-5 items-center w-2/3 ">
