@@ -50,7 +50,7 @@ const App = () => {
           <h1>Number of words per column:</h1>
           <input type="number" defaultValue={2} ref={wordsPerColumn} />
         </div>
-        <button onClick={saveFile}>Create your Hopel</button>
+        <button onClick={saveFile} className="mb-3">Create your Hopel</button>
       </div>
     </div>
   );
