@@ -55,10 +55,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 750,
+        "height": 650,
         "resizable": true,
         "title": "hopelio",
-        "width": 700
+        "width": 500
       }
     ]
   }
