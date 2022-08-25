@@ -31,7 +31,7 @@ jobs:
       run: yarn
     - name: build macos
       if: matrix.platform == 'macOS-latest'
-      run: yarn build --target universal-apple-darwin
+      run: rustup target add aarch64-apple-darwin && yarn build --target universal-apple-darwin
     - name: build everything else
       if: matrix.platform != 'macOS-latest'
       run: yarn build
