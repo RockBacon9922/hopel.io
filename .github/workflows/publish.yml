@@ -30,10 +30,10 @@ jobs:
     - name: install app dependencies
       run: yarn
     - name: build macos
-      if: matrix.platfrom == 'macos-latest'
+      if: matrix.platform == 'macOS-latest'
       run: yarn build --target universal-apple-darwin
     - name: build everything else
-      if: matrix.platform != 'macos-latest'
+      if: matrix.platform != 'macOS-latest'
       run: yarn build
     - uses: tauri-apps/tauri-action@v0
       env:
