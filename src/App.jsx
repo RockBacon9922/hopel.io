@@ -18,7 +18,7 @@ const App = () => {
       title: "Save File",
       filters: [
         {
-          name: "Untitled",
+          name: "Word Document",
           extensions: ["docx"],
         },
       ],

@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "hopelio",
-    "version": "1.0.2"
+    "version": "../package.json"
   },
   "tauri": {
     "allowlist": {
