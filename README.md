@@ -13,7 +13,7 @@ To download please go to the releases section on the right and download the corr
 # Architecture
 Under the hood it creates a table on a word document with the table bounderies set to invisible. It then splits the words in to the desiered ammounts and places these words into the table.
 
-it does all the processing on the front end and only uses tauri for system dialogue messages.
+it does all the processing on the front end and only uses rust for system dialogue messages.
 
 # Setup dev environment
 
